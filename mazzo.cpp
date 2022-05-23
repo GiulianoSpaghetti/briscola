@@ -24,7 +24,7 @@ mazzo::mazzo(): i(NUMERO_CARTE-1) {
     ;
 }
 
-bool mazzo::addCarta(size_t intero) throw (overflow_error*, invalid_argument*) {
+bool mazzo::addCarta(size_t intero) {
     if (carte.size()==NUMERO_CARTE) {
         throw new std::overflow_error("Errore");
         return false;
@@ -41,7 +41,7 @@ bool mazzo::addCarta(size_t intero) throw (overflow_error*, invalid_argument*) {
     return true;
 }
 
-carta *mazzo::getCarta() throw (underflow_error*) {
+carta *mazzo::getCarta() {
     carta *c;
     if (i==FINE_MAZZO) {
         throw new underflow_error("Errore");
@@ -51,7 +51,7 @@ carta *mazzo::getCarta() throw (underflow_error*) {
     return c;
 }
 
-void mazzo::mischia() throw (overflow_error*, invalid_argument*)  {
+void mazzo::mischia()  {
     srand(time(NULL));
     doppioni.assign(NUMERO_CARTE, false);
     size_t carta=rand();
