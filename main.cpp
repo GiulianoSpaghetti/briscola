@@ -68,7 +68,7 @@ int main() {
                 system("pause");
                 system("cls");
 #else
-		system("Premere un tasto per continuare...; read dummy");
+		system("echo Premere un tasto per continuare...; read dummy");
 		system("clear");
 #endif
                 if ((c->getSeme()==c1->getSeme() && *c<*c1) || (!c->isBriscola() && c1->isBriscola())) {
