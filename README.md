@@ -7,3 +7,4 @@ Questa prima versione non salva il seme di briscola, rendendo impossibile il ric
 
 # Bibliografia
 https://www.umbertosorbo.it/pensare-in-c/
+https://www.udemy.com/course/corso-in-italiano-di-programmazione-in-c/learn/lecture/24025026?start=1#overview
