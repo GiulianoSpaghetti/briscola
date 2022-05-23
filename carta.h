@@ -23,7 +23,7 @@
 
 #include <stdexcept>
 #include <fstream>
-#include <wx/string.h>
+
 using namespace std;
 
 class carta {
@@ -31,14 +31,14 @@ class carta {
         size_t seme;
         size_t valore;
         bool briscola;
-        void setSeme(size_t seme) throw(invalid_argument*);
-        void setValore(size_t valore) throw (invalid_argument*);
+        void setSeme(size_t seme);
+        void setValore(size_t valore);
     public:
-        carta(size_t seme, size_t valore, int cartaBriscola) throw(invalid_argument*);
-        carta(size_t intero, int cartaBriscola) throw(invalid_argument*);
+        carta(size_t seme, size_t valore, int cartaBriscola);
+        carta(size_t intero, int cartaBriscola);
         size_t getPunteggio();
         size_t getSeme() {return seme;}
-        wxString getSemeStr();
+        string getSemeStr();
         size_t getValore() {return valore;}
         bool isBriscola();
         friend ostream& operator<<(ostream& o, carta& c);

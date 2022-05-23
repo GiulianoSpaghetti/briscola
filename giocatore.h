@@ -34,25 +34,25 @@
 class giocatore {
     public:
         giocatore();
-        giocatore(wxString nome);
-        void addCarta(mazzo* m) throw (overflow_error*, underflow_error*);
+        giocatore(string nome);
+        void addCarta(mazzo* m);
         carta *getCarta(int i) {return mano[i];}
-        carta* getCartaGiocata() throw (invalid_argument*);
+        carta* getCartaGiocata();
         int getIndiceCartaGiocata() {return iCartaGiocata;}
-        wxString getNome() {return nome;}
+        string getNome() {return nome;}
         int getNumeroCarte() {return mano.size();}
         size_t getPunteggio() {return punteggio;}
-        size_t getPunteggioCartaGiocata() throw (invalid_argument*);
-        virtual void gioca() throw (underflow_error*);
-        virtual void gioca(giocatore* g) throw (underflow_error*);
+        size_t getPunteggioCartaGiocata();
+        virtual void gioca();
+        virtual void gioca(giocatore* g);
         bool hasCartaGiocata() {return iCartaGiocata!=NESSUNA_CARTA_GIOCATA;}
-        void setCartaGiocata(int i) throw (overflow_error*, underflow_error*);
-        void setNome(wxString n) {nome=n;}
-        void setPunteggio(giocatore *g) throw (invalid_argument*) {punteggio=punteggio+getPunteggioCartaGiocata()+g->getPunteggioCartaGiocata();}
+        void setCartaGiocata(int i);
+        void setNome(string n) {nome=n;}
+        void setPunteggio(giocatore *g) {punteggio=punteggio+getPunteggioCartaGiocata()+g->getPunteggioCartaGiocata();}
         friend ostream& operator<<(ostream& o, giocatore& g);
         virtual ~giocatore();
     protected:
-        wxString nome;
+        string nome;
         vector<carta*> mano;
         int iCartaGiocata;
         size_t numeroCarte, punteggio;

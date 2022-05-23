@@ -21,11 +21,11 @@
 #include "cpu.h"
 
 cpu::cpu() {
-    nome=wxT("cpu");
+    nome="cpu";
     srand(time(NULL));
 }
 
-cpu::cpu(wxString nome) {
+cpu::cpu(string nome) {
     this->nome=nome;
     srand(time(NULL));
 }
@@ -64,7 +64,7 @@ int cpu::getSoprataglio(carta *c, bool maggiore) {
         return NON_TROVATA;
 }
 
-void cpu::gioca() throw (underflow_error*) {
+void cpu::gioca() {
     if (mano.size()==0) {
         throw new underflow_error("Errore");
         return;
@@ -73,7 +73,7 @@ void cpu::gioca() throw (underflow_error*) {
 }
 
 
-void cpu::gioca(giocatore* g) throw (underflow_error*) {
+void cpu::gioca(giocatore* g) {
     carta* c=g->getCartaGiocata();
         int i=rand();
     if (!c->isBriscola()) {

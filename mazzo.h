@@ -29,25 +29,23 @@
 #include <cstdlib>
 
 #include "carta.h"
-#include <wx/string.h>
-#include <wx/wx.h>
 #define NUMERO_CARTE 40
 
 class mazzo {
     public:
         mazzo();
-        carta *getCarta() throw (underflow_error*);
+        carta *getCarta();
         carta *getCartaBriscola() {return carte[0];}
         int getNumeroCarte() {return i+1;}
         bool hasCarte() {return i>-1;}
-        void mischia() throw (overflow_error*, invalid_argument*);
+        void mischia();
         friend ostream& operator<<(ostream& o, mazzo& m);
         virtual ~mazzo();
     private:
         enum {FINE_MAZZO=-1};
         vector<carta*> carte;
         vector<bool> doppioni;
-        bool addCarta(size_t intero) throw (overflow_error*, invalid_argument*);
+        bool addCarta(size_t intero);
         int i;
 };
 

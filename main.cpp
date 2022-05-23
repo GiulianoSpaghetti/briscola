@@ -22,6 +22,7 @@
 #include "mazzo.h"
 #include "giocatore.h"
 #include "cpu.h"
+#include <windows.h>
 
 using namespace std;
 

@@ -29,9 +29,9 @@
 class cpu: public giocatore {
     public:
         cpu();
-        cpu(wxString nome);
-        virtual void gioca() throw (underflow_error*);
-        virtual void gioca(giocatore* g) throw (underflow_error*);
+        cpu(string nome);
+        virtual void gioca();
+        virtual void gioca(giocatore* g);
         friend ostream& operator<<(ostream& o, cpu& c);
     private:
         int cercaSoprataglio();

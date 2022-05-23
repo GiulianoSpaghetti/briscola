@@ -21,14 +21,14 @@
 #include "giocatore.h"
 
 giocatore::giocatore(): iCartaGiocata(NESSUNA_CARTA_GIOCATA), numeroCarte(3), punteggio(0)  {
-    this->nome=wxT("");
+    this->nome="";
 }
 
-giocatore::giocatore(wxString nome): iCartaGiocata(NESSUNA_CARTA_GIOCATA), numeroCarte(3), punteggio(0) {
+giocatore::giocatore(string nome): iCartaGiocata(NESSUNA_CARTA_GIOCATA), numeroCarte(3), punteggio(0) {
     this->nome=nome;
 }
 
-void giocatore::addCarta(mazzo* m) throw (overflow_error*, underflow_error*) {
+void giocatore::addCarta(mazzo* m) {
     if (mano.size()==numeroCarte) {
         throw new overflow_error("Errore");
         return;
@@ -50,7 +50,7 @@ void giocatore::addCarta(mazzo* m) throw (overflow_error*, underflow_error*) {
     }
 }
 
-carta* giocatore::getCartaGiocata() throw (invalid_argument*) {
+carta* giocatore::getCartaGiocata() {
     if (iCartaGiocata==NESSUNA_CARTA_GIOCATA) {
         throw new invalid_argument("Errore");
         return NULL;
@@ -58,7 +58,7 @@ carta* giocatore::getCartaGiocata() throw (invalid_argument*) {
     return mano[iCartaGiocata];
 }
 
-size_t giocatore::getPunteggioCartaGiocata() throw (invalid_argument*) {
+size_t giocatore::getPunteggioCartaGiocata() {
     carta *c=getCartaGiocata();
     size_t p=c->getPunteggio();
     vector<carta*>::iterator i;
@@ -68,7 +68,7 @@ size_t giocatore::getPunteggioCartaGiocata() throw (invalid_argument*) {
     return p;
 }
 
-void giocatore::gioca() throw (underflow_error*) {
+void giocatore::gioca() {
     if (mano.size()==0) {
         throw new underflow_error("");
         return;
@@ -80,11 +80,11 @@ void giocatore::gioca() throw (underflow_error*) {
     iCartaGiocata--;
 }
 
-void giocatore::gioca(giocatore* g) throw (underflow_error*) {
+void giocatore::gioca(giocatore* g) {
     gioca();
 }
 
-void giocatore::setCartaGiocata(int i) throw (overflow_error*, underflow_error*) {
+void giocatore::setCartaGiocata(int i) {
     if (i<0)
         throw new underflow_error("");
     else if (i>=mano.size())

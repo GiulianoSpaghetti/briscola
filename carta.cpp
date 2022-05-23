@@ -20,13 +20,13 @@
 
 #include "carta.h"
 
-carta::carta(size_t intero, int cartaBriscola) throw(invalid_argument*) {
+carta::carta(size_t intero, int cartaBriscola) {
     setSeme(intero/10);
     setValore(intero%10);
     briscola=seme==cartaBriscola/10;
 }
 
-carta::carta(size_t seme, size_t valore, int cartaBriscola) throw(invalid_argument*) {
+carta::carta(size_t seme, size_t valore, int cartaBriscola) {
         setSeme(seme);
         setValore(valore);
         briscola=seme==cartaBriscola/10;
@@ -43,13 +43,13 @@ size_t carta::getPunteggio() {
     }
 }
 
-wxString carta::getSemeStr() {
-    wxString semeBriscola;
+string carta::getSemeStr() {
+    string semeBriscola;
     switch (seme) {
-        case 0: semeBriscola=_("Bastoni"); break;
-        case 1: semeBriscola=_("Coppe"); break;
-        case 2: semeBriscola=_("Denari"); break;
-        case 3: semeBriscola=_("Spade"); break;
+        case 0: semeBriscola="Bastoni"; break;
+        case 1: semeBriscola="Coppe"; break;
+        case 2: semeBriscola="Denari"; break;
+        case 3: semeBriscola="Spade"; break;
     }
     return semeBriscola;
 }
@@ -60,7 +60,7 @@ bool carta::isBriscola() {
     return briscola;
 }
 
-void carta::setSeme(size_t seme) throw (invalid_argument*) {
+void carta::setSeme(size_t seme) {
     if (seme>=0 && seme <4)
         this->seme=seme;
     else {
@@ -69,7 +69,7 @@ void carta::setSeme(size_t seme) throw (invalid_argument*) {
     }
 }
 
-void carta::setValore(size_t valore) throw (invalid_argument *) {
+void carta::setValore(size_t valore) {
     if (valore>=0 && valore <10)
         this->valore=valore;
     else
