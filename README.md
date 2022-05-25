@@ -9,3 +9,5 @@ Questa prima versione non salva il seme di briscola, rendendo impossibile il ric
 https://www.umbertosorbo.it/pensare-in-c/
 
 https://www.udemy.com/course/corso-in-italiano-di-programmazione-in-c/learn/lecture/24025026?start=1#overview
+
+https://www.udemy.com/course/c-guida-completa-bemporad/learn/lecture/14178289#content
