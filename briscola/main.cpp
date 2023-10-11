@@ -30,17 +30,29 @@ using namespace std;
 static internat* inter;
 
 int main(int argc, char *argv[]) {
+    wstring s1, s2;
     if (argc != 4) {
         cout << "Must be passed 3 parameters: the name of user, the name of cpu and an integer indicating the translation number." << endl;
         return EXIT_FAILURE;
     }
-    inter = new internat(atoi(argv[3]));
+    int i = atoi(argv[3]);
+    inter = new internat(i);
     carta::inter = inter;
     giocatore::inter = inter;
     cpu::inter = inter;
+    string s = inter->get_translated_string(internat::STRINGS::TRUMP_CARD_IS);
+    s1 = wstring(s.begin(), s.end());
+    s= inter->get_translated_string(internat::STRINGS::GAME_DROWN);
+    s2 = wstring(s.begin(), s.end());
+    if (i == 1) {
+        std::setlocale(LC_ALL, "it_IT.UTF8");
+        s1.replace(41, 2, L"é");
+        s2.replace(11, 2, L"é");
+    }
+    else
+        std::setlocale(LC_ALL, "en_US.UTF8");
     bool primaPartita = true;
     size_t puntiUtente = 0, puntiCpu = 0;
-    int i = 0;
     mazzo* m = new mazzo();
     cpu *cp=new cpu(argv[2]);
     giocatore* primo=new giocatore(argv[1]),
@@ -67,11 +79,12 @@ int main(int argc, char *argv[]) {
             return EXIT_FAILURE;
         }
     }
-    cout << "Briscola CUI 2.0 by numerone " << inter->get_translated_string(internat::STRINGS::TESTING_ARM64) << endl;
+    cout << "Briscola CUI 2.1 by numerone " << inter->get_translated_string(internat::STRINGS::TESTING_ARM64) << endl;
     do {
         if (m->getNumeroCarte() > 0) {
             cout << inter->get_translated_string(internat::STRINGS::IN_DECK) << " " << m->getNumeroCarte() << " " << inter->get_translated_string(internat::STRINGS::CARDS) << " " << endl;
-            cout << inter->get_translated_string(internat::STRINGS::TRUMP_CARD_IS) << " " << * (m->getCartaBriscola()) << endl;
+            wcout << s1;
+            cout  << " " << * (m->getCartaBriscola()) << endl;
         }
             cout<<*cp;
             try {
@@ -105,7 +118,7 @@ int main(int argc, char *argv[]) {
                 puntiCpu += cp->getPunteggio();
                 cout<< inter->get_translated_string(internat::STRINGS::ENDED_GAME)<<endl;
                 if (puntiUtente == puntiCpu)
-                    cout << inter->get_translated_string(internat::STRINGS::GAME_DROWN);
+                    wcout << s2;
                 else if (puntiUtente > puntiCpu)
                     cout << inter->get_translated_string(internat::STRINGS::YOU_WIN) << " "<<puntiUtente - puntiCpu << " " << inter->get_translated_string(internat::STRINGS::POINTS) << endl;
                 else
