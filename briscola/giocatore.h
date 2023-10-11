@@ -36,12 +36,12 @@ class giocatore {
     public:
         static internat* inter;
         giocatore();
-        giocatore(string nome);
+        giocatore(wstring nome);
         void addCarta(mazzo* m);
         carta *getCarta(int i) {return mano[i];}
         carta* getCartaGiocata();
         int getIndiceCartaGiocata() {return iCartaGiocata;}
-        string getNome() {return nome;}
+        wstring getNome() {return nome;}
         int getNumeroCarte() {return mano.size();}
         size_t getPunteggio() {return punteggio;}
         size_t getPunteggioCartaGiocata();
@@ -49,12 +49,12 @@ class giocatore {
         virtual void gioca(giocatore* g);
         bool hasCartaGiocata() {return iCartaGiocata!=NESSUNA_CARTA_GIOCATA;}
         void setCartaGiocata(int i);
-        void setNome(string n) {nome=n;}
+        void setNome(wstring n) {nome=n;}
         void setPunteggio(giocatore *g) {punteggio=punteggio+getPunteggioCartaGiocata()+g->getPunteggioCartaGiocata();}
-        friend ostream& operator<<(ostream& o, giocatore& g);
+        friend wostream& operator<<(wostream& o, giocatore& g);
         virtual ~giocatore();
     protected:
-        string nome;
+        wstring nome;
         vector<carta*> mano;
         int iCartaGiocata;
         size_t numeroCarte, punteggio;

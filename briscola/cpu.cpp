@@ -23,11 +23,11 @@
 internat* cpu::inter;
 
 cpu::cpu() {
-    nome="cpu";
+    nome=L"cpu";
     srand(time(NULL));
 }
 
-cpu::cpu(string nome) {
+cpu::cpu(wstring nome) {
     this->nome=nome;
     srand(time(NULL));
 }
@@ -95,7 +95,7 @@ void cpu::gioca(giocatore* g) {
     iCartaGiocata=0;
 }
 
-ostream& operator<<(ostream& o, cpu& c) {
+wostream& operator<<(wostream& o, cpu& c) {
     o<<cpu::inter->get_translated_string(internat::STRINGS::POINTS_OF) << " " << c.nome << ": " << c.punteggio << endl;
     return o;
 }

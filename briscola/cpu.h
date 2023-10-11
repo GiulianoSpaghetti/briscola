@@ -30,10 +30,10 @@ class cpu: public giocatore {
     public:
         static internat* inter;
         cpu();
-        cpu(string nome);
+        cpu(wstring nome);
         virtual void gioca();
         virtual void gioca(giocatore* g);
-        friend ostream& operator<<(ostream& o, cpu& c);
+        friend wostream& operator<<(wostream& o, cpu& c);
     private:
         int cercaSoprataglio();
         int getSoprataglio(carta* c, bool maggiore);

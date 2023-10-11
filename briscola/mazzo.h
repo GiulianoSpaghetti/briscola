@@ -39,7 +39,6 @@ class mazzo {
         int getNumeroCarte() {return i+1;}
         bool hasCarte() {return i>-1;}
         void mischia();
-        friend ostream& operator<<(ostream& o, mazzo& m);
         virtual ~mazzo();
     private:
         enum {FINE_MAZZO=-1};

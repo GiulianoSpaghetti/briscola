@@ -23,10 +23,10 @@
 internat *giocatore::inter;
 
 giocatore::giocatore(): iCartaGiocata(NESSUNA_CARTA_GIOCATA), numeroCarte(3), punteggio(0)  {
-    this->nome="";
+    this->nome=L" ";
 }
 
-giocatore::giocatore(string nome): iCartaGiocata(NESSUNA_CARTA_GIOCATA), numeroCarte(3), punteggio(0) {
+giocatore::giocatore(wstring nome): iCartaGiocata(NESSUNA_CARTA_GIOCATA), numeroCarte(3), punteggio(0) {
     this->nome=nome;
 }
 
@@ -75,7 +75,7 @@ void giocatore::gioca() {
         throw new underflow_error("");
         return;
     }
-    std::cout<<*this<< inter->get_translated_string(internat::STRINGS::PROMPT)<< ": ";
+    std::wcout<<*this<< inter->get_translated_string(internat::STRINGS::PROMPT)<< ": ";
     do {
         cin>>iCartaGiocata;
     } while (iCartaGiocata<1 || iCartaGiocata>mano.size());
@@ -95,7 +95,7 @@ void giocatore::setCartaGiocata(int i) {
         iCartaGiocata=i;
 }
 
-ostream& operator<<(ostream& o, giocatore& g) {
+wostream& operator<<(wostream& o, giocatore& g) {
     o<<g.inter->get_translated_string(internat::STRINGS::POINTS_OF)<<" "<<g.nome << ": " << g.punteggio << endl;
     o<<g.inter->get_translated_string(internat::PROMPT_CARDS)<<" "<<g.nome << ":" << endl;
     for (int i=0; i<g.mano.size(); i++)

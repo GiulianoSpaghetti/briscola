@@ -44,7 +44,7 @@ class carta {
         size_t getIdSeme();
         size_t getValore() {return valore;}
         bool isBriscola();
-        friend ostream& operator<<(ostream& o, carta& c);
+        friend wostream& operator<<(wostream& o, carta& c);
         friend bool operator<(carta& c1, carta& c2);
 };
 

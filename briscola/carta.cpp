@@ -76,9 +76,9 @@ void carta::setValore(size_t valore) {
         throw new std::invalid_argument("Valore passato: ");
 }
 
-ostream& operator<<(ostream& o, carta& c) {
+wostream& operator<<(wostream& o, carta& c) {
     string s;
-    o<<c.valore+1<<" "<<carta::inter->get_translated_string(internat::STRINGS::OF)<< " "<<carta::inter->get_translated_string(c.getIdSeme());
+    o<<c.valore+1<<" "<<carta::inter->get_translated_string(internat::STRINGS::OF)<< L" "<<carta::inter->get_translated_string(c.getIdSeme());
     if (c.briscola)
         o<<"*";
     return o;

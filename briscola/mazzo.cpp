@@ -66,13 +66,6 @@ void mazzo::mischia()  {
     doppioni.clear();
 }
 
-ostream& operator<<(ostream& o, mazzo& m) {
-    for (int i=0; i<40; i++)
-        o<<*m.carte[i]<<endl;
-//    o<<*m.briscola<<endl;
-    return o;
-}
-
 mazzo::~mazzo() {
     vector<carta*>::iterator i;
     for (i=carte.begin(); i!=carte.end(); i++)

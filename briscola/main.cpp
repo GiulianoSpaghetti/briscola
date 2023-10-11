@@ -36,26 +36,25 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
     int i = atoi(argv[3]);
+    if (i == 1)
+        std::setlocale(LC_ALL, "it_IT.UTF8");
+    else {
+        std::setlocale(LC_ALL, "en_US.UTF8");
+        i = 0;
+    }
     inter = new internat(i);
     carta::inter = inter;
     giocatore::inter = inter;
     cpu::inter = inter;
-    string s = inter->get_translated_string(internat::STRINGS::TRUMP_CARD_IS);
-    s1 = wstring(s.begin(), s.end());
-    s= inter->get_translated_string(internat::STRINGS::GAME_DROWN);
-    s2 = wstring(s.begin(), s.end());
-    if (i == 1) {
-        std::setlocale(LC_ALL, "it_IT.UTF8");
-        s1.replace(41, 2, L"é");
-        s2.replace(11, 2, L"é");
-    }
-    else
-        std::setlocale(LC_ALL, "en_US.UTF8");
     bool primaPartita = true;
     size_t puntiUtente = 0, puntiCpu = 0;
     mazzo* m = new mazzo();
-    cpu *cp=new cpu(argv[2]);
-    giocatore* primo=new giocatore(argv[1]),
+    string s = argv[2];
+    s1 = wstring(s.begin(), s.end());
+    cpu *cp=new cpu(s1);
+    s = argv[1];
+    s1 = wstring(s.begin(), s.end());
+    giocatore* primo=new giocatore(s1),
               *secondo=cp,
               *g=primo,
               *temp;
@@ -79,21 +78,20 @@ int main(int argc, char *argv[]) {
             return EXIT_FAILURE;
         }
     }
-    cout << "Briscola CUI 2.1 by numerone " << inter->get_translated_string(internat::STRINGS::TESTING_ARM64) << endl;
+    wcout << L"Briscola CUI 2.1 by numerone " << inter->get_translated_string(internat::STRINGS::TESTING_ARM64) << endl;
     do {
         if (m->getNumeroCarte() > 0) {
-            cout << inter->get_translated_string(internat::STRINGS::IN_DECK) << " " << m->getNumeroCarte() << " " << inter->get_translated_string(internat::STRINGS::CARDS) << " " << endl;
-            wcout << s1;
-            cout  << " " << * (m->getCartaBriscola()) << endl;
+            wcout << inter->get_translated_string(internat::STRINGS::IN_DECK) << L" " << m->getNumeroCarte() << L" " << inter->get_translated_string(internat::STRINGS::CARDS) << L" " << endl;
+            wcout << inter->get_translated_string(internat::STRINGS::TRUMP_CARD_IS) << L" "<< * (m->getCartaBriscola()) << endl;
         }
-            cout<<*cp;
+            wcout<<*cp;
             try {
                 primo->gioca();
                 c=primo->getCartaGiocata();
-                cout<<endl<<inter->get_translated_string(internat::STRINGS::GAMED_CARD)<< ": " << *c << endl << endl;
+                wcout << endl << inter->get_translated_string(internat::STRINGS::GAMED_CARD) << L": "<< *c << endl << endl;
                 secondo->gioca(primo);
                 c1=secondo->getCartaGiocata();
-                cout<<inter->get_translated_string(internat::STRINGS::GAMED_CARD) << ": " <<*c1<<endl;
+                wcout << inter->get_translated_string(internat::STRINGS::GAMED_CARD) << L": " << *c1 << endl;
 #ifdef WIN32
                 system("pause");
                 system("cls");
@@ -116,18 +114,18 @@ int main(int argc, char *argv[]) {
             } catch (underflow_error* e) {
                 puntiUtente += g->getPunteggio();
                 puntiCpu += cp->getPunteggio();
-                cout<< inter->get_translated_string(internat::STRINGS::ENDED_GAME)<<endl;
+                wcout<< inter->get_translated_string(internat::STRINGS::ENDED_GAME)<<endl;
                 if (puntiUtente == puntiCpu)
                     wcout << s2;
                 else if (puntiUtente > puntiCpu)
-                    cout << inter->get_translated_string(internat::STRINGS::YOU_WIN) << " "<<puntiUtente - puntiCpu << " " << inter->get_translated_string(internat::STRINGS::POINTS) << endl;
+                    wcout << inter->get_translated_string(internat::STRINGS::YOU_WIN) << " "<<puntiUtente - puntiCpu << L" " << inter->get_translated_string(internat::STRINGS::POINTS) << endl;
                 else
-                    cout << inter->get_translated_string(internat::STRINGS::YOU_LOOSE) << " "<< puntiCpu - puntiUtente << " " << inter->get_translated_string(internat::STRINGS::POINTS) << endl;
+                    wcout << inter->get_translated_string(internat::STRINGS::YOU_LOOSE) << " "<< puntiCpu - puntiUtente << L" " << inter->get_translated_string(internat::STRINGS::POINTS) << endl;
                 if (primaPartita)
-                    cout << inter->get_translated_string(internat::STRINGS::PLAY_SECOND_MATCH) << endl;
+                    wcout << inter->get_translated_string(internat::STRINGS::PLAY_SECOND_MATCH) << endl;
                 else {
                     puntiUtente = puntiCpu = 0;
-                    cout << inter->get_translated_string(internat::STRINGS::PLAY_NEW_MATCH) << endl;
+                    wcout << inter->get_translated_string(internat::STRINGS::PLAY_NEW_MATCH) << endl;
                 }
                 cin >> i;
                 if (i==1)
@@ -137,9 +135,13 @@ int main(int argc, char *argv[]) {
                     delete m;
                     m = new mazzo();
                     delete cp;
-                    cp = new cpu(argv[2]);
+                    s = argv[2];
+                    s1 = wstring(s.begin(), s.end());
+                    cp = new cpu(s1);
                     delete g;
-                    g = new giocatore(argv[1]);
+                    s = argv[1];
+                    s1 = wstring(s.begin(), s.end());
+                    g = new giocatore(s1);
                     if (primaPartita) {
                         secondo = cp;
                         primo = g;
