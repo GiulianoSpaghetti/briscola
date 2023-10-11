@@ -6,61 +6,41 @@ internat::internat(size_t lang) {
     std::wstring s = L"per testare il c++ ARM64";
     italian_translations.push_back(s);
     s = L"Nel mazzo rimangono";
-
+    italian_translations.push_back(s);
     s = L"carte";
     italian_translations.push_back(s);
-
     s = L"Carta giocata";
     italian_translations.push_back(s);
-
     s = L"Partita finita";
     italian_translations.push_back(s);
-
     s = L"La partita é patta";
     italian_translations.push_back(s);
-
     s = L"Hai vinto per";
     italian_translations.push_back(s);
-
     s = L"Hai perso per";
     italian_translations.push_back(s);
-
     s = L"punti";
     italian_translations.push_back(s);
-
     s = L"Vuoi effettuare la seconda partita? 1: si 0: no";
     italian_translations.push_back(s);
-
     s = L"Vuoi effettuare una nuova partita? 1: si 0: no";
     italian_translations.push_back(s);
-
     s = L"di";
     italian_translations.push_back(s);
-
     s = L"bastoni";
     italian_translations.push_back(s);
-
     s = L"coppe";
     italian_translations.push_back(s);
-
     s = L"denari";
     italian_translations.push_back(s);
-
     s = L"spade";
     italian_translations.push_back(s);
-
     s = L"Inserisci l'indice della carta da giocare";
     italian_translations.push_back(s);
-
     s = L"Punti di";
     italian_translations.push_back(s);
-
     s = L"Carte in possesso di";
     italian_translations.push_back(s);
-
-    s = L"Inserisci l'indice della carta da giocare";
-    italian_translations.push_back(s);
-
     s = L"La carta che designa il seme di briscola é";
     italian_translations.push_back(s);
 
@@ -98,11 +78,11 @@ internat::internat(size_t lang) {
     english_translations.push_back(s);
     s = L"swords";
     english_translations.push_back(s);
+    s = L"Insert the index of the card that must be played";
+    english_translations.push_back(s);
     s = L"Points of";
     english_translations.push_back(s);
     s = L"Cards of";
-    english_translations.push_back(s);
-    s = L"Insert the index of the card to be played";
     english_translations.push_back(s);
     s = L"The card designating trump seed is";
     english_translations.push_back(s);
@@ -115,11 +95,7 @@ std::wstring internat::get_translated_string(const size_t key)
     {
     case LANGUAGES::ITALIANO:
         return italian_translations[key];
-
-    case LANGUAGES::INGLESE:
-        return english_translations[key];
-
     default:
-        throw std::runtime_error("Unsupported language: " + std::string("unsupported language"));
+        return english_translations[key];
     }
 }

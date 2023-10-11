@@ -36,11 +36,9 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
     int i = atoi(argv[3]);
-    if (i == 1)
-        std::setlocale(LC_ALL, "it_IT.UTF8");
-    else {
-        std::setlocale(LC_ALL, "en_US.UTF8");
-        i = 0;
+    switch (i) {
+        case internat::LANGUAGES::ITALIANO: std::setlocale(LC_ALL, "it_IT.UTF8"); break;
+        default: std::setlocale(LC_ALL, "en_US.UTF8"); i = internat::LANGUAGES::INGLESE;
     }
     inter = new internat(i);
     carta::inter = inter;

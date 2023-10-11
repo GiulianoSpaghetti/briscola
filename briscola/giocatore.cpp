@@ -77,7 +77,7 @@ void giocatore::gioca() {
     }
     std::wcout<<*this<< inter->get_translated_string(internat::STRINGS::PROMPT)<< ": ";
     do {
-        cin>>iCartaGiocata;
+        wcin>>iCartaGiocata;
     } while (iCartaGiocata<1 || iCartaGiocata>mano.size());
     iCartaGiocata--;
 }
