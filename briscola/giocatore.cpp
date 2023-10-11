@@ -97,7 +97,7 @@ void giocatore::setCartaGiocata(int i) {
 
 ostream& operator<<(ostream& o, giocatore& g) {
     o<<g.inter->get_translated_string(internat::STRINGS::POINTS_OF)<<" "<<g.nome << ": " << g.punteggio << endl;
-    o<<g.inter->get_translated_string(internat::PROMPT_CARDS)<<g.nome<<":"<<endl;
+    o<<g.inter->get_translated_string(internat::PROMPT_CARDS)<<" "<<g.nome << ":" << endl;
     for (int i=0; i<g.mano.size(); i++)
         o<<*g.mano[i]<<" ";
     o<<endl;

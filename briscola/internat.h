@@ -10,7 +10,6 @@ private:
     size_t language;
     std::map<size_t, std::string> english_translations =
     {
-        {STRINGS::PARAMETERS_ERROR, "Must be putted two parameters: name of user and name of cpu"},
         {STRINGS::TESTING_ARM64, "for testing ARM64 c++"},
         {STRINGS::IN_DECK, "In deck are"},
         {STRINGS::CARDS, "cards"},
@@ -30,18 +29,18 @@ private:
         {STRINGS::POINTS_OF, "Points of"},
         {STRINGS::PROMPT_CARDS, "Cards of"},
         {STRINGS::PROMPT, "Insert the index of the card to be played"},
+        {STRINGS::TRUMP_CARD_IS, "The card designating trump seed is"},
 
     };
 
     std::map<size_t, std::string> italian_translations =
     {
-        {STRINGS::PARAMETERS_ERROR, "Bisogna passare due parametri: il nome utente ed il nome della cpu"},
         {STRINGS::TESTING_ARM64, "per testare il c++ ARM64"},
         {STRINGS::IN_DECK, "Nel mazzo rimangono"},
         {STRINGS::CARDS, "carte"},
         {STRINGS::GAMED_CARD, "Carta giocata"},
         {STRINGS::ENDED_GAME, "Partita finita"},
-        {STRINGS::GAME_DROWN, "La partita é patta"},
+        {STRINGS::GAME_DROWN, "La partita e' patta"},
         {STRINGS::YOU_WIN, "Hai vinto per"},
         {STRINGS::YOU_LOOSE, "Hai perso per"},
         {STRINGS::POINTS, "punti"},
@@ -55,12 +54,13 @@ private:
         {STRINGS::PROMPT, "Inserisci l'indice della carta da giocare"},
         {STRINGS::POINTS_OF, "Punti di"},
         {STRINGS::PROMPT_CARDS, "Carte in possesso di"},
-        {STRINGS::PROMPT, "Insert the index of the card to be played"},
+        {STRINGS::PROMPT, "Inserisci l'indice della carta da giocare"},
+        {STRINGS::TRUMP_CARD_IS, "La carta che designa il seme di briscola e'"},
     };
 
 public:
     enum LANGUAGES{INGLESE=0, ITALIANO};
-    enum STRINGS { PARAMETERS_ERROR = 0, TESTING_ARM64, IN_DECK, CARDS, GAMED_CARD, ENDED_GAME, GAME_DROWN, YOU_WIN, YOU_LOOSE, POINTS, PLAY_SECOND_MATCH, PLAY_NEW_MATCH, OF, STICKS, CUPS, MONEY, SWORDS, PROMPT, POINTS_OF, PROMPT_CARDS };
+    enum STRINGS { TESTING_ARM64=0, IN_DECK, CARDS, GAMED_CARD, ENDED_GAME, GAME_DROWN, YOU_WIN, YOU_LOOSE, POINTS, PLAY_SECOND_MATCH, PLAY_NEW_MATCH, OF, STICKS, CUPS, MONEY, SWORDS, PROMPT, POINTS_OF, PROMPT_CARDS, TRUMP_CARD_IS };
     internat(size_t lang) : language(lang) { ; }
     std::string get_translated_string(const size_t key);
 

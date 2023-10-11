@@ -30,14 +30,14 @@ using namespace std;
 static internat* inter;
 
 int main(int argc, char *argv[]) {
-    inter = new internat(internat::LANGUAGES::INGLESE);
+    if (argc != 4) {
+        cout << "Must be passed 3 parameters: the name of user, the name of cpu and an integer indicating the translation number." << endl;
+        return EXIT_FAILURE;
+    }
+    inter = new internat(atoi(argv[3]));
     carta::inter = inter;
     giocatore::inter = inter;
     cpu::inter = inter;
-    if (argc != 3) {
-        cout << inter->get_translated_string(internat::STRINGS::PARAMETERS_ERROR) << endl;
-        return EXIT_FAILURE;
-    }
     bool primaPartita = true;
     size_t puntiUtente = 0, puntiCpu = 0;
     int i = 0;
@@ -67,17 +67,20 @@ int main(int argc, char *argv[]) {
             return EXIT_FAILURE;
         }
     }
-    cout << "Briscola CUI 1.0 by numerone " << inter->get_translated_string(internat::STRINGS::TESTING_ARM64) << endl;
+    cout << "Briscola CUI 2.0 by numerone " << inter->get_translated_string(internat::STRINGS::TESTING_ARM64) << endl;
     do {
-            cout<< inter->get_translated_string(internat::STRINGS:: IN_DECK)<< " "<<m->getNumeroCarte()<< inter->get_translated_string(internat::STRINGS::CARDS) << " " << endl;
+        if (m->getNumeroCarte() > 0) {
+            cout << inter->get_translated_string(internat::STRINGS::IN_DECK) << " " << m->getNumeroCarte() << " " << inter->get_translated_string(internat::STRINGS::CARDS) << " " << endl;
+            cout << inter->get_translated_string(internat::STRINGS::TRUMP_CARD_IS) << " " << * (m->getCartaBriscola()) << endl;
+        }
             cout<<*cp;
             try {
                 primo->gioca();
                 c=primo->getCartaGiocata();
-                cout<<endl<<inter->get_translated_string(internat::STRINGS::GAMED_CARD)<< ":" << *c << endl << endl;
+                cout<<endl<<inter->get_translated_string(internat::STRINGS::GAMED_CARD)<< ": " << *c << endl << endl;
                 secondo->gioca(primo);
                 c1=secondo->getCartaGiocata();
-                cout<<inter->get_translated_string(internat::STRINGS::GAMED_CARD) << ":" <<*c1<<endl;
+                cout<<inter->get_translated_string(internat::STRINGS::GAMED_CARD) << ": " <<*c1<<endl;
 #ifdef WIN32
                 system("pause");
                 system("cls");
@@ -100,7 +103,7 @@ int main(int argc, char *argv[]) {
             } catch (underflow_error* e) {
                 puntiUtente += g->getPunteggio();
                 puntiCpu += cp->getPunteggio();
-                cout<< inter->get_translated_string(internat::STRINGS::ENDED_GAME);
+                cout<< inter->get_translated_string(internat::STRINGS::ENDED_GAME)<<endl;
                 if (puntiUtente == puntiCpu)
                     cout << inter->get_translated_string(internat::STRINGS::GAME_DROWN);
                 else if (puntiUtente > puntiCpu)
