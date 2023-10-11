@@ -18,65 +18,26 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "mazzo.h"
+#ifndef _CPU_H_
+#define _CPU_H_
 
-mazzo::mazzo(): i(NUMERO_CARTE-1) {
-    ;
-}
+#include <stdlib.h>
+#include "giocatore.h"
 
-bool mazzo::addCarta(size_t intero) {
-    if (carte.size()==NUMERO_CARTE) {
-        throw new std::overflow_error("Errore");
-        return false;
-    }
-    if (doppioni[intero])
-        return false;
-    else {
-        if (carte.size()==0)
-            carte.push_back(new carta(intero, intero));
-        else
-            carte.push_back(new carta(intero, carte[0]->getSeme()*10));
-        doppioni[intero]=true;
-    }
-    return true;
-}
+#define NON_TROVATA -1
 
-carta *mazzo::getCarta() {
-    carta *c;
-    if (i==FINE_MAZZO) {
-        throw new underflow_error("Errore");
-        return NULL;
-    }
-    c=carte[i--];
-    return c;
-}
+class cpu: public giocatore {
+    public:
+        static internat* inter;
+        cpu();
+        cpu(string nome);
+        virtual void gioca();
+        virtual void gioca(giocatore* g);
+        friend ostream& operator<<(ostream& o, cpu& c);
+    private:
+        int cercaSoprataglio();
+        int getSoprataglio(carta* c, bool maggiore);
+        int getBriscola();
+};
 
-void mazzo::mischia()  {
-    srand(time(NULL));
-    doppioni.assign(NUMERO_CARTE, false);
-    size_t carta=rand();
-    while (carte.size()<NUMERO_CARTE) {
-        carta*=rand();
-        carta%=NUMERO_CARTE;
-        while (!addCarta(carta)) {
-            ++carta;
-            carta%=NUMERO_CARTE;
-        }
-    }
-    doppioni.clear();
-}
-
-ostream& operator<<(ostream& o, mazzo& m) {
-    for (int i=0; i<40; i++)
-        o<<*m.carte[i]<<endl;
-//    o<<*m.briscola<<endl;
-    return o;
-}
-
-mazzo::~mazzo() {
-    vector<carta*>::iterator i;
-    for (i=carte.begin(); i!=carte.end(); i++)
-        delete *i;
-    carte.clear();
-    doppioni.clear();
-}
+#endif
