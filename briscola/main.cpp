@@ -38,6 +38,8 @@ int main(int argc, char *argv[]) {
     int i = atoi(argv[3]);
     switch (i) {
         case internat::LANGUAGES::ITALIANO: std::setlocale(LC_ALL, "it_IT.UTF8"); break;
+        case internat::LANGUAGES::SPAGNOLO: std::setlocale(LC_ALL, "es_ES.UTF8"); break;
+        case internat::LANGUAGES::FRANCESE: std::setlocale(LC_ALL, "fr_FR.UTF8"); break;
         default: std::setlocale(LC_ALL, "en_US.UTF8"); i = internat::LANGUAGES::INGLESE;
     }
     inter = new internat(i);
@@ -76,7 +78,7 @@ int main(int argc, char *argv[]) {
             return EXIT_FAILURE;
         }
     }
-    wcout << L"Briscola CUI 2.1 by numerone " << inter->get_translated_string(internat::STRINGS::TESTING_ARM64) << endl;
+    wcout << L"Briscola CUI 3.0 by numerone, software under GPL v3+: some right reserved. " << inter->get_translated_string(internat::STRINGS::TESTING_ARM64) << endl;
     do {
         if (m->getNumeroCarte() > 0) {
             wcout << inter->get_translated_string(internat::STRINGS::IN_DECK) << L" " << m->getNumeroCarte() << L" " << inter->get_translated_string(internat::STRINGS::CARDS) << L" " << endl;
@@ -116,9 +118,9 @@ int main(int argc, char *argv[]) {
                 if (puntiUtente == puntiCpu)
                     wcout << s2;
                 else if (puntiUtente > puntiCpu)
-                    wcout << inter->get_translated_string(internat::STRINGS::YOU_WIN) << " "<<puntiUtente - puntiCpu << L" " << inter->get_translated_string(internat::STRINGS::POINTS) << endl;
+                    wcout << inter->get_translated_string(internat::STRINGS::YOU_WIN) << L" "<<puntiUtente - puntiCpu << L" " << inter->get_translated_string(internat::STRINGS::POINTS) << endl;
                 else
-                    wcout << inter->get_translated_string(internat::STRINGS::YOU_LOOSE) << " "<< puntiCpu - puntiUtente << L" " << inter->get_translated_string(internat::STRINGS::POINTS) << endl;
+                    wcout << inter->get_translated_string(internat::STRINGS::YOU_LOOSE) << L" "<< puntiCpu - puntiUtente << L" " << inter->get_translated_string(internat::STRINGS::POINTS) << endl;
                 if (primaPartita)
                     wcout << inter->get_translated_string(internat::STRINGS::PLAY_SECOND_MATCH) << endl;
                 else {
